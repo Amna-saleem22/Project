@@ -1,0 +1,32 @@
+ <form class="login" [formGroup]="studentForm" >
+    <h2>Welcome, User!</h2>
+    <p>Please log in</p>
+    <input type="text" placeholder="User Name" formControlName="email" />
+    <div>
+        @if (studentForm.controls['email'].touched && studentForm.controls['email'].errors?.['requried']) {
+            <span>This is requried</span>
+        }
+        @else if (studentForm.controls['email'].touched && studentForm.controls['email'].errors?.['minlength']) {
+            <span>EmailFormat</span>
+            }
+    </div>
+    <input type="password" placeholder="Password"  formControlName="password"/>
+    <div >
+        @if (studentForm.controls['password'].touched && studentForm.controls['password'].errors?.['required']) {
+        <span>Strong Password</span>
+        } @else if (studentForm.controls['password'].touched && studentForm.controls['password'].errors?.['minlength']) {
+        <span>Min char 4 Required</span>
+        }
+      </div>
+    <input type="submit" value="Log In" [disabled]="studentForm.invalid" (click)="onclick()"/>
+    <div class="links">
+      <a href="#">Forgot password</a>
+      <a href="#">Register</a>
+    </div>
+  </form>
+
+  <div class="container text-scuccess">
+    {{ check | json }}
+  </div>
+
+  
